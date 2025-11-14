@@ -4,6 +4,8 @@ This project is a full-stack authentication application built with the MERN stac
 
 📸 **Screenshots**
 
+# Project Walkthrough
+https://www.loom.com/share/07e94f72d2be44bcabde2ddd1833e1a3
 # Dashboard
 <img width="1895" height="833" alt="Screenshot 2025-11-14 161639" src="https://github.com/user-attachments/assets/0a285a97-cbf9-457a-bd4a-2a2ef2793c36" />
 
