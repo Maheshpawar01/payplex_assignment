@@ -7,13 +7,11 @@ const { protect, adminOnly } = require('../middleware/auth');
 // Generate JWT Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '7d'
+    expiresIn: '1d'
   });
 };
 
-// @route   POST /api/auth/register
-// @desc    Register new user
-// @access  Public
+
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role, address, contact, dob, profilePhoto } = req.body;
@@ -27,7 +25,7 @@ router.post('/register', async (req, res) => {
       });
     }
 
-    // Create user
+    // Creating user
     const user = await User.create({
       name,
       email,
@@ -51,21 +49,19 @@ router.post('/register', async (req, res) => {
     });
   } catch (error) {
     console.error('Registration Error:', error);
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: error.message || 'Server error during registration'
     });
   }
 });
 
-// @route   POST /api/auth/login
-// @desc    Login user
-// @access  Public
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate input
+    // Validat input
     if (!email || !password) {
       return res.status(400).json({
         success: false,
@@ -82,7 +78,7 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // Check password
+    // Checking password
     const isPasswordMatch = await user.comparePassword(password);
     if (!isPasswordMatch) {
       return res.status(401).json({
@@ -94,7 +90,7 @@ router.post('/login', async (req, res) => {
     // Set all other users as inactive
     await User.updateMany({ _id: { $ne: user._id } }, { isActive: false });
 
-    // Set current user as active
+    // Set current user active
     user.isActive = true;
     user.lastLogin = new Date();
     await user.save();
@@ -120,16 +116,13 @@ router.post('/login', async (req, res) => {
     });
   } catch (error) {
     console.error('Login Error:', error);
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'Server error during login'
     });
   }
 });
 
-// @route   POST /api/auth/logout
-// @desc    Logout user
-// @access  Private
 router.post('/logout', protect, async (req, res) => {
   try {
     // Set user as inactive
@@ -140,16 +133,13 @@ router.post('/logout', protect, async (req, res) => {
       message: 'Logout successful'
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'Server error during logout'
     });
   }
 });
 
-// @route   GET /api/auth/users
-// @desc    Get all users
-// @access  Private
 router.get('/users', protect, async (req, res) => {
   try {
     const users = await User.find().select('-password');
@@ -160,16 +150,13 @@ router.get('/users', protect, async (req, res) => {
       users
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'Server error fetching users'
     });
   }
 });
 
-// @route   GET /api/auth/me
-// @desc    Get current user
-// @access  Private
 router.get('/me', protect, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
@@ -179,22 +166,20 @@ router.get('/me', protect, async (req, res) => {
       user
     });
   } catch (error) {
-    res.status(500).json({
+    res.json({
       success: false,
       message: 'Server error fetching user data'
     });
   }
 });
 
-// @route   DELETE /api/auth/users/:id
-// @desc    Delete user
-// @access  Private (Admin only)
+
 router.delete('/users/:id', protect, adminOnly, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: 'User not found'
       });
@@ -215,7 +200,7 @@ router.delete('/users/:id', protect, adminOnly, async (req, res) => {
       message: 'User deleted successfully'
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: 'Server error deleting user'
     });

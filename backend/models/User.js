@@ -4,12 +4,12 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please provide name'],
+    required: true,
     trim: true
   },
   email: {
     type: String,
-    required: [true, 'Please provide email'],
+    required:true,
     unique: true,
     lowercase: true,
     trim: true,
@@ -28,16 +28,16 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: [true, 'Please provide address']
+    required:true
   },
   contact: {
     type: String,
-    required: [true, 'Please provide contact number'],
+    required: true,
     match: [/^[0-9]{10}$/, 'Please provide valid 10-digit contact number']
   },
   dob: {
     type: Date,
-    required: [true, 'Please provide date of birth']
+    required:true
   },
   profilePhoto: {
     type: String,
@@ -66,7 +66,7 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-// Compare password method
+// Compare password
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };

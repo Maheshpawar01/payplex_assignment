@@ -52,13 +52,13 @@ const Login = ({ setIsAuthenticated }) => {
 
       <div className="relative z-10 w-full max-w-md">
         {/* Logo/Header */}
-        <div className="text-center mb-8 animate-float">
+        {/* <div className="text-center mb-8 animate-float">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-2xl mb-4">
             <Sparkles className="w-10 h-10 text-purple-600" />
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
           <p className="text-white/80">Sign in to continue to your dashboard</p>
-        </div>
+        </div> */}
 
         {/* Login Card */}
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20">
@@ -136,7 +136,7 @@ const Login = ({ setIsAuthenticated }) => {
 
           {/* Demo Credentials */}
           <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-purple-200">
-            <p className="text-xs font-semibold text-gray-700 mb-2">🔑 Demo Credentials:</p>
+            <p className="text-xs font-semibold text-gray-700 mb-2">Demo Credentials:</p>
             <div className="space-y-1 text-xs text-gray-600">
               <p><strong>Admin:</strong> admin@college.edu / admin123</p>
               <p><strong>Student:</strong> student@college.edu / student123</p>

@@ -13,12 +13,12 @@ const protect = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: 'Not authorized to access this route'
+        message: 'Not authorized'
       });
     }
 
     try {
-      // Verify token
+      // Verify
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       
       // Get user from token
@@ -35,13 +35,13 @@ const protect = async (req, res, next) => {
     } catch (error) {
       return res.status(401).json({
         success: false,
-        message: 'Token is invalid or expired'
+        message: 'Token is invalid'
       });
     }
   } catch (error) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
-      message: 'Server error in authentication'
+      message: 'authentication problem'
     });
   }
 };
