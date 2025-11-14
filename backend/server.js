@@ -12,7 +12,7 @@ const app = express();
 
 // frontend url
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: process.env.CLIENT_URL || 'https://payplex-assignment-phi.vercel.app/login',
   credentials: true
 }));
 app.use(express.json());
