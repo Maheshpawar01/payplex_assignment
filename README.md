@@ -1,4 +1,4 @@
-# 🌟 Awesome Authentication App 🌟
+# 🌟 Payplex Assignment 🌟
 
 This project is a full-stack authentication application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It provides a robust and secure user authentication system, complete with registration, login, protected routes, and user role management. It solves the common problem of implementing secure user authentication in web applications, offering a ready-to-use solution with a well-defined architecture.
 
