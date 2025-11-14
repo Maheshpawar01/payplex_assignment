@@ -226,7 +226,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
                   <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className=" divide-y divide-gray-200">
                 {users.map((user) => {
                   const isCurrentUser = currentUser._id === user._id;
                   
@@ -308,104 +308,105 @@ const Dashboard = ({ setIsAuthenticated }) => {
       </main>
 
       {/* Profile Modal */}
-      {viewProfile && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full transform transition-all animate-slideUp">
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-t-3xl px-8 py-6">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-white">User Profile</h3>
-                <button
-                  onClick={() => setViewProfile(null)}
-                  className="text-white hover:bg-white/20 rounded-full p-2 transition"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
+     {/* Profile Modal */}
+{viewProfile && (
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all animate-slideUp">
+      {/* Modal Header */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-t-2xl px-6 py-4 sticky top-0 z-10">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-bold text-white">User Profile</h3>
+          <button
+            onClick={() => setViewProfile(null)}
+            className="text-white hover:bg-white/20 rounded-full p-1.5 transition"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Modal Body */}
+      <div className="p-6">
+        <div className="text-center mb-4">
+          <img
+            src={viewProfile.profilePhoto}
+            alt={viewProfile.name}
+            className="w-24 h-24 rounded-full mx-auto border-4 border-purple-200 shadow-lg mb-3 object-cover"
+          />
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">{viewProfile.name}</h2>
+          <div className="flex justify-center gap-2 flex-wrap">
+            <span className={`px-3 py-1 text-xs font-bold rounded-full ${
+              viewProfile.role === 'admin' 
+                ? 'bg-purple-100 text-purple-800 border border-purple-300' 
+                : 'bg-blue-100 text-blue-800 border border-blue-300'
+            }`}>
+              {viewProfile.role.toUpperCase()}
+            </span>
+            <span className={`px-3 py-1 text-xs font-bold rounded-full flex items-center gap-1 ${
+              viewProfile.isActive 
+                ? 'bg-green-100 text-green-800 border border-green-300' 
+                : 'bg-gray-100 text-gray-600 border border-gray-300'
+            }`}>
+              <div className={`w-2 h-2 rounded-full ${
+                viewProfile.isActive ? 'bg-green-500 animate-pulse' : 'bg-gray-400'
+              }`}></div>
+              <span>{viewProfile.isActive ? 'ACTIVE' : 'INACTIVE'}</span>
+            </span>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+            <Mail className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-gray-500 uppercase">Email</p>
+              <p className="text-sm text-gray-800 font-medium break-words">{viewProfile.email}</p>
             </div>
+          </div>
 
-            {/* Modal Body */}
-            <div className="p-8">
-              <div className="text-center mb-6">
-                <img
-                  src={viewProfile.profilePhoto}
-                  alt={viewProfile.name}
-                  className="w-32 h-32 rounded-full mx-auto border-4 border-purple-200 shadow-xl mb-4"
-                />
-                <h2 className="text-3xl font-bold text-gray-800 mb-2">{viewProfile.name}</h2>
-                <div className="flex justify-center space-x-3">
-                  <span className={`px-4 py-2 text-sm font-bold rounded-full ${
-                    viewProfile.role === 'admin' 
-                      ? 'bg-purple-100 text-purple-800 border border-purple-300' 
-                      : 'bg-blue-100 text-blue-800 border border-blue-300'
-                  }`}>
-                    {viewProfile.role.toUpperCase()}
-                  </span>
-                  <span className={`px-4 py-2 text-sm font-bold rounded-full flex items-center space-x-1 ${
-                    viewProfile.isActive 
-                      ? 'bg-green-100 text-green-800 border border-green-300' 
-                      : 'bg-gray-100 text-gray-600 border border-gray-300'
-                  }`}>
-                    <div className={`w-2 h-2 rounded-full ${
-                      viewProfile.isActive ? 'bg-green-500 animate-pulse' : 'bg-gray-400'
-                    }`}></div>
-                    <span>{viewProfile.isActive ? 'ACTIVE' : 'INACTIVE'}</span>
-                  </span>
-                </div>
-              </div>
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+            <Phone className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-gray-500 uppercase">Contact</p>
+              <p className="text-sm text-gray-800 font-medium">{viewProfile.contact}</p>
+            </div>
+          </div>
 
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <Mail className="w-5 h-5 text-purple-600 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold text-gray-500 uppercase">Email Address</p>
-                    <p className="text-gray-800 font-medium">{viewProfile.email}</p>
-                  </div>
-                </div>
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+            <Calendar className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-gray-500 uppercase">Date of Birth</p>
+              <p className="text-sm text-gray-800 font-medium">
+                {new Date(viewProfile.dob).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'short', 
+                  day: 'numeric' 
+                })}
+              </p>
+            </div>
+          </div>
 
-                <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <Phone className="w-5 h-5 text-blue-600 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold text-gray-500 uppercase">Contact Number</p>
-                    <p className="text-gray-800 font-medium">{viewProfile.contact}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <Calendar className="w-5 h-5 text-green-600 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold text-gray-500 uppercase">Date of Birth</p>
-                    <p className="text-gray-800 font-medium">
-                      {new Date(viewProfile.dob).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <MapPin className="w-5 h-5 text-red-600 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-xs font-semibold text-gray-500 uppercase">Address</p>
-                    <p className="text-gray-800 font-medium">{viewProfile.address}</p>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setViewProfile(null)}
-                className="mt-6 w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-bold hover:shadow-2xl hover:scale-105 transition-all duration-300"
-              >
-                Close Profile
-              </button>
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+            <MapPin className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-gray-500 uppercase">Address</p>
+              <p className="text-sm text-gray-800 font-medium break-words">{viewProfile.address}</p>
             </div>
           </div>
         </div>
-      )}
+
+        <button
+          onClick={() => setViewProfile(null)}
+          className="mt-5 w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2.5 rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+        >
+          Close Profile
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };

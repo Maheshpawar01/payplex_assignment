@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-import ProtectedRoute from './components/PretectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
