@@ -138,8 +138,8 @@ const Login = ({ setIsAuthenticated }) => {
           <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-purple-200">
             <p className="text-xs font-semibold text-gray-700 mb-2">Demo Credentials:</p>
             <div className="space-y-1 text-xs text-gray-600">
-              <p><strong>Admin:</strong> admin@college.edu / admin123</p>
-              <p><strong>Student:</strong> student@college.edu / student123</p>
+              <p><strong>Admin:</strong> admin@gmail.com / admin123</p>
+              <p><strong>Student:</strong> mahesh@gmail.com/ mahesh123</p>
             </div>
           </div>
         </div>

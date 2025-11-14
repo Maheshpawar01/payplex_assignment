@@ -310,7 +310,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
       {/* Profile Modal */}
 {viewProfile && (
   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[70vh] overflow-y-auto transform transition-all animate-slideUp">
+    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-y-auto transform transition-all animate-slideUp">
       {/* Modal Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-t-2xl px-6 py-4 sticky top-0 z-10">
         <div className="flex items-center justify-between">
