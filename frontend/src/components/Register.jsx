@@ -58,7 +58,7 @@ const Register = () => {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-2xl mb-4">
             <Sparkles className="w-10 h-10 text-purple-600" />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">Create Account</h1>
+          <h1 className=" cursor-pointer text-4xl font-bold text-white mb-2">Create Account</h1>
           <p className="text-white/80">Join our college management system</p>
         </div>
 
@@ -228,7 +228,7 @@ const Register = () => {
               Already have an account?{' '}
               <Link
                 to="/login"
-                className="text-purple-600 font-semibold hover:text-purple-700 transition"
+                className=" cursor-pointer text-purple-600 font-semibold hover:text-purple-700 transition"
               >
                 Sign In
               </Link>
