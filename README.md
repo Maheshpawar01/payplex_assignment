@@ -4,6 +4,17 @@ This project is a full-stack authentication application built with the MERN stac
 
 📸 **Screenshots**
 
+# Dashboard
+<img width="1895" height="833" alt="Screenshot 2025-11-14 161639" src="https://github.com/user-attachments/assets/0a285a97-cbf9-457a-bd4a-2a2ef2793c36" />
+
+# Login Page
+<img width="1916" height="842" alt="Screenshot 2025-11-14 161454" src="https://github.com/user-attachments/assets/ff6a0eed-402c-4dac-a020-ddd9353aaa5d" />
+
+# Signup Page
+<img width="1774" height="833" alt="Screenshot 2025-11-14 161556" src="https://github.com/user-attachments/assets/20a9787b-f1df-4059-bcd9-781057e59ca3" />
+
+
+
 (Add screenshots of the application here to showcase its UI and functionality)
 
 🚀 **Key Features**
